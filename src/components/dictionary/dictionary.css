@@ -87,3 +87,38 @@
     background-color: rgb(12,102,110, 0.5);
     min-height: 20px;
 }
+
+.dictionary__checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+
+.dictionary__check-all-words {
+    min-height: 20px;
+    min-width: 100px;
+    max-width: 185px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    color: black;
+    background-color: #ffd532;
+}
+
+/* .dictionary__check-all-words:hover {
+    color: #ff2e63;
+} */
+
+.dictionary__check-all-words--active {
+    background-color: #ff2e63;
+    color: black;
+}
+
+.dictionary__check-all-words--active:hover {
+    color: initial;
+}
+
+.dictionary__global-checkbox {
+    display: none;
+}
