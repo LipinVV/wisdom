@@ -1,0 +1,89 @@
+ 
+.dictionary {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(12,102,110, 0.5);
+    justify-content: center;
+    min-height: 500px;
+}
+
+.dictionary__id, 
+.dictionary__word,
+.dictionary__pinin,
+.dictionary__definition,
+.dictionary__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    list-style: none;
+    border: black solid 1px;
+    width: 100%;
+    background-color: rgb(12,102,110, 0.5);
+}
+
+.dictionary__id {
+    max-width: 25px;
+}
+
+.dictionary__word {
+    max-width: 60px;
+}
+
+.dictionary__pinin {
+    max-width: 70px;
+}
+
+.dictionary__definition {
+    min-width: 125px;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: start;
+    justify-content: flex-start;
+}
+
+.dictionary__list,
+.dictionary__head {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.dictionary__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 0;
+    width: 100%;
+}
+
+.dictionary__header {
+    text-align: center;
+}
+
+.dictionary__input {
+    width: 40%;
+    min-height: 30px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.dictionary__message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    color: #ffd532;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(12,102,110, 0.5);
+    min-height: 20px;
+}

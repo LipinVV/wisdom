@@ -1,0 +1,40 @@
+.theory {
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+
+
+.lesson__one-week {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    min-height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(12,102,110, 0.7);
+}
+
+.lesson__one-day  {
+    width: 33%;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    padding-bottom: 10px;
+}
+.lesson__one-day:last-child {
+    width: 100%;
+}
+
+
+.lesson__header {
+    color: white;
+}
+
+.lesson__info {
+    color: white;
+    background-color: rgb(12,102,110, 0.9);
+}

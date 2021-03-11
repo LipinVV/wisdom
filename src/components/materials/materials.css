@@ -1,0 +1,9 @@
+.materials {
+    width: 100%;
+    text-align: center;
+}
+
+.materials__player {
+    display: flex;
+    justify-content: center;
+}

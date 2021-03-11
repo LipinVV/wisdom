@@ -1,0 +1,95 @@
+:root {
+  --first: #08d9d6;
+  --second: #000000;
+  --third: #ff2e63;
+  --fourth: #eaeaea;
+  --test: #ffd532;
+
+  --one: #733c03;
+  --two: #ba6c17;
+  --three: #ed8707;
+  --four: #0c666e;
+  --five: #75b2b7;
+  --six: #b9d6d4;
+}
+
+.app {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+}
+
+.app__navigation {
+  width: 100%;
+  min-height: 50px;
+
+  /* @media (min-width: 1200px) {
+    .app__navigation {
+
+    } 
+  } */
+}
+
+.app__menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.app__section {
+  display: flex;
+  list-style: none;
+  min-height: 50px;
+  background-color: rgb(12,102,110, 0.7);
+  cursor: pointer;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.app__section a {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.app__section a:visited {
+  color: var(--second);
+  color: white;
+}
+
+.container {
+    min-width: 320px;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 20px; 
+}
+
+  @media (min-width: 660px) {
+    .container {
+      width: 660px;
+      padding-right: 30px; } 
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      width: 1200px;
+      padding: 0 50px; } 
+  }
+
+  @media (min-width: 1920px) {
+    .container {
+      width: 1920px;
+      padding-left: 80px;
+      padding-right: 80px; 
+  } 
+}
