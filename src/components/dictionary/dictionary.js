@@ -21,8 +21,8 @@ export const Dictionary = () => {
     const handleChanger = evt => {
         const { value } = evt.target;
         setChecked(prevState => {
-            if (prevState.includes(value)) {
-                return prevState.filter(element => element !== value)
+            if (prevState.includes(Number(value))) {
+                return prevState.filter(element => element !== Number(value))
             } else {
                 return [...prevState, Number(value)]
             }
@@ -101,7 +101,6 @@ export const Dictionary = () => {
                                         checked={checked.includes(word.id) || globallyChecked}
                                         onChange={handleChanger}
                                     />
-                                    {console.log(globallyChecked)}
                                 </li>
                                 <li className='dictionary__id'>{word.id}</li>
                                 <li className='dictionary__word'>{word.word}</li>
