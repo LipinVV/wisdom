@@ -16,6 +16,18 @@ export const Dictionary = () => {
         setSearch(value);
     }
 
+    const [checked, setChecked] = useState([]);
+
+    const handleChanger = evt => {
+        const { value } = evt.target;
+        setChecked(prevState => {
+            if (prevState.includes(value)) {
+                return prevState.filter(element => element !== value)
+            } else {
+                return [...prevState, Number(value)]
+            }
+        })
+    }
 
     return (
         <div className='container'>
@@ -43,14 +55,7 @@ export const Dictionary = () => {
                             return value;
                         }
                     })
-                    .map((word, index) => (
-                        <ul className='dictionary__list' key={index}>
-                            <li className='dictionary__id'>{word.id}</li>
-                            <li className='dictionary__word'>{word.word}</li>
-                            <li className='dictionary__pinin'>{word.pinin}</li>
-                            <li className='dictionary__definition'>{word.definition}</li>
-                        </ul>
-                    )).length === 0 ?
+                    .length === 0 ?
                     <div className='dictionary__message'>По вашему запросу ничего не найдено</div>
                     : dictionary
                         .filter((value) => {
@@ -65,8 +70,17 @@ export const Dictionary = () => {
                                 return value;
                             }
                         })
-                        .map((word, index) => (
-                            <ul className='dictionary__list' key={index}>
+                        .map((word) => (
+                            <ul className='dictionary__list' key={word.id}>
+                                <li className='dictionary__checkbox'>
+                                    <input
+                                        type='checkbox'
+                                        value={word.id}
+                                        checked={checked.includes(word.id)}
+                                        onChange={handleChanger}
+                                    >
+                                    </input>
+                                </li>
                                 <li className='dictionary__id'>{word.id}</li>
                                 <li className='dictionary__word'>{word.word}</li>
                                 <li className='dictionary__pinin'>{word.pinin}</li>

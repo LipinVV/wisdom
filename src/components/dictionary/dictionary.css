@@ -87,3 +87,10 @@
     background-color: rgb(12,102,110, 0.5);
     min-height: 20px;
 }
+
+.dictionary__checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
