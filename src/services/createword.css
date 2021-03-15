@@ -1,0 +1,7 @@
+.word__label {
+    margin-bottom: 20px;
+}
+
+.word__creator {
+    display: flex;
+}
