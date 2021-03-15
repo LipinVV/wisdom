@@ -42,7 +42,7 @@ export const Dictionary = () => {
         if (count1 === 1) { return 'слово'; }
         return 'слов';
     }
-    console.log(declineNoun)
+
     return (
         <div className='container'>
             <div className='dictionary'>
@@ -56,7 +56,8 @@ export const Dictionary = () => {
                         onChange={globalHandleChanger}
                     />
                 </label>
-                {globallyChecked ? `Вы выбрали: ${dictionary.map(x => x).length} ${declineNoun(dictionary.map(x => x).length)}` : `Вы выбрали: ${checked.length} ${declineNoun(checked.length)}`}
+                {globallyChecked ? `Вы выбрали: ${dictionary.map(x => x).length} ${declineNoun(dictionary.map(x => x).length)}` : 
+                `Вы выбрали: ${checked.length} ${declineNoun(checked.length)}`}
                 <input
                     className='dictionary__input'
                     type='text'

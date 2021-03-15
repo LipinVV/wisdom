@@ -1,4 +1,61 @@
 .practice {
     width: 100%;
     text-align: center;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current__word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    color: white;
+    background-color: rgb(12,102,110, 0.5);
+    width: 100%;
+    min-height: 150px;
+    font-size: 60px;
+}
+
+.answer__input {
+    font-size: 50px;
+    min-height: 50px;
+    min-width: 230px;
+}
+
+.answer__input--correct {
+    background-color: #ff2e63;
+}
+
+.answer__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.answer__correct {
+    min-width: 220px;
+    min-height: 50px;
+    background-color: #ff2e63;
+    font-size: 25px;
+    color: black;
+}
+.type__contest {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.answer__await {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    min-height: 30px;
+    font-size: 25px;
+    background-color: rgb(12,102,110, 0.5);
 }
