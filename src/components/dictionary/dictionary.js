@@ -1,9 +1,7 @@
 import { React, useState } from 'react'
 import { dictionary } from './data'
-
-// git init - инициация репо
-// git remote add origin git@github.com:LipinVV/chineese-app.git
-// 
+import firebase, { db } from '../../services/firebase'
+import { CreateWord } from '../../services/createword'
 
 export const Dictionary = () => {
 
@@ -47,7 +45,7 @@ export const Dictionary = () => {
         <div className='container'>
             <div className='dictionary'>
                 <h1 className='dictionary__header'>Ваш словарь</h1>
-                [нужна сортировка по русскому алфавиту; далее - опция по формированию из выбранных слов уникального набора слов для изучения]<br/>
+                [нужна сортировка по русскому алфавиту; далее - опция по формированию из выбранных слов уникального набора слов для изучения]<br />
                 [проблема №1: вводим любую букву и жмём "выбрать все" - выбираются все слова, вместо отрисованных]
                 <label
                     className={globallyChecked === false ? 'dictionary__check-all-words' : 'dictionary__check-all-words dictionary__check-all-words--active'}>Выбрать все слова из списка
@@ -56,8 +54,8 @@ export const Dictionary = () => {
                         onChange={globalHandleChanger}
                     />
                 </label>
-                {globallyChecked ? `Вы выбрали: ${dictionary.map(x => x).length} ${declineNoun(dictionary.map(x => x).length)}` : 
-                `Вы выбрали: ${checked.length} ${declineNoun(checked.length)}`}
+                {globallyChecked ? `Вы выбрали: ${dictionary.map(x => x).length} ${declineNoun(dictionary.map(x => x).length)}` :
+                    `Вы выбрали: ${checked.length} ${declineNoun(checked.length)}`}
                 <input
                     className='dictionary__input'
                     type='text'
@@ -110,6 +108,11 @@ export const Dictionary = () => {
                         ))
                 }
             </div>
+            <CreateWord/>
+
         </div>
     )
 }
+
+// получение словаря, изменение словаря, удаление словаря
+// *func() ~> firebase; get method; render*

@@ -5,7 +5,7 @@ import { dictionary } from '../dictionary/data'
 export const Practice = () => {
 
 
-    const [timer, setTimer] = useState(3);
+    const [timer, setTimer] = useState(10);
     const [running, setRunning] = useState(true);
 
     useEffect(() => {
@@ -63,14 +63,14 @@ export const Practice = () => {
                         />
                     </label>
                     {answer === showRandomWord(num) ?
-                        <button
+                    <button
                             onClick={handleGenerator}
                             className='answer__correct'>
                             Верно!
                     </button> :
-                        timer === 'Время вышло!' ? <div className='answer__ended'>Далее</div> :
-
-                            <div className='answer__await'>Впишите слово!</div>}
+                        timer === 'Время вышло!' ? 
+                        <div className='answer__ended'>Далее{' =>'}</div> :
+                        <div className='answer__await'>Впишите слово!</div>}
                 </div>
             </div>
         </div>

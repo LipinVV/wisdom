@@ -95,7 +95,6 @@
     list-style: none;
 }
 
-
 .dictionary__check-all-words {
     min-height: 20px;
     min-width: 100px;
@@ -105,10 +104,6 @@
     color: black;
     background-color: #ffd532;
 }
-
-/* .dictionary__check-all-words:hover {
-    color: #ff2e63;
-} */
 
 .dictionary__check-all-words--active {
     background-color: #ff2e63;
