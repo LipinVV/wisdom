@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { dictionary } from '../dictionary/data'
-
+import { GetDictionary } from "../../services/dictionary";
 
 export const Practice = () => {
+    // можно ли прокинуть из одного файла во все?
+    const [words, setWords] = useState([])
 
+    const getAllWords = async () => {
+        try {
+            const allWordsFromServer = await GetDictionary()
+            setWords(allWordsFromServer)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    
+    useEffect(() => {
+        getAllWords()
+    }, [])
+   
 
     const [timer, setTimer] = useState(10);
     const [running, setRunning] = useState(true);
@@ -26,12 +40,13 @@ export const Practice = () => {
         setAnswer('');
     }
 
+    // есть ли другой способ?
     const showRandomWord = (num) => {
-        for (let word of dictionary) {
-            if (dictionary[num].id - 1 === num) {
-                return dictionary[num].word
+        for (let word of words) {
+            if (word.id === num) {
+                return word.word;
             } else {
-                return 'not found'
+                continue
             }
         }
     }

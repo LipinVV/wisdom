@@ -117,3 +117,7 @@
 .dictionary__global-checkbox {
     display: none;
 }
+
+.dictionary__message-hidden {
+    display: none;
+}
