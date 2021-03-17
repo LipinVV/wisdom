@@ -1,11 +1,11 @@
-import { React, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { dictionary } from './data'
-import firebase, { db } from '../../services/firebase'
-import { CreateWord } from '../../services/createword'
+import { getDictionary } from "../../services/dictionary";
+import { CreateWord } from '../CreateWord/createword'
 
 export const Dictionary = () => {
-
     const [search, setSearch] = useState('');
+    const [words, setWords] = useState([])
 
     const handleSearcher = evt => {
         const { value } = evt.target;
@@ -41,6 +41,48 @@ export const Dictionary = () => {
         return 'слов';
     }
 
+    const getAllWords = async () => {
+        try {
+            const allWordsFromServer = await getDictionary()
+            setWords(allWordsFromServer)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    // Фильтр надо вынести в отвдельную функцию
+    // <div className='dictionary__message'>По вашему запросу ничего не найдено</div>
+    // const filter = () => {
+    // .filter((value) => {
+    //         if (search === '') {
+    //             return value;
+    //         }
+    //         if (Number(search) === value.id) {
+    //             return value;
+    //         } else if (value.definition.toLowerCase().includes(search.toLowerCase()) ||
+    //             value.word.toLowerCase().includes(search.toLowerCase())) {
+    //             return value;
+    //         }
+    //     })
+    //         .length === 0 ?
+    // }
+
+    //.filter((value) => {
+    //                             if (search === '') {
+    //                                 return value;
+    //                             }
+    //                             if (Number(search) === value.id) {
+    //                                 return value;
+    //                             } else if (value.definition.toLowerCase().includes(search.toLowerCase()) ||
+    //                                 value.word.toLowerCase().includes(search.toLowerCase())) {
+    //                                 return value;
+    //                             }
+    //                         })
+
+    useEffect(() => {
+        getAllWords()
+    }, [])
+
     return (
         <div className='container'>
             <div className='dictionary'>
@@ -62,54 +104,26 @@ export const Dictionary = () => {
                     placeholder='Поиск по слову...'
                     onChange={handleSearcher}
                 />
-                {dictionary
-                    .filter((value) => {
-                        if (search === '') {
-                            return value;
-                        }
-                        if (Number(search) === value.id) {
-                            return value;
-                        }
-                        else if (value.definition.toLowerCase().includes(search.toLowerCase()) ||
-                            value.word.toLowerCase().includes(search.toLowerCase())) {
-                            return value;
-                        }
-                    })
-                    .length === 0 ?
-                    <div className='dictionary__message'>По вашему запросу ничего не найдено</div>
-                    : dictionary
-                        .filter((value) => {
-                            if (search === '') {
-                                return value;
-                            }
-                            if (Number(search) === value.id) {
-                                return value;
-                            }
-                            else if (value.definition.toLowerCase().includes(search.toLowerCase()) ||
-                                value.word.toLowerCase().includes(search.toLowerCase())) {
-                                return value;
-                            }
-                        })
-                        .map((word) => (
-                            <ul className='dictionary__list' key={word.id}>
-                                <li className='dictionary__checkbox'>
-                                    <input
-                                        type='checkbox'
-                                        value={word.id}
-                                        checked={checked.includes(word.id) || globallyChecked}
-                                        onChange={handleChanger}
-                                    />
-                                </li>
-                                <li className='dictionary__id'>{word.id}</li>
-                                <li className='dictionary__word'>{word.word}</li>
-                                <li className='dictionary__pinin'>{word.pinin}</li>
-                                <li className='dictionary__definition'>{word.definition}</li>
-                            </ul>
-                        ))
+
+                {Boolean(words) && words.map((word) => (
+                    <ul className='dictionary__list' key={word.id}>
+                        <li className='dictionary__checkbox'>
+                            <input
+                                type='checkbox'
+                                value={word.id}
+                                checked={checked.includes(word.id) || globallyChecked}
+                                onChange={handleChanger}
+                            />
+                        </li>
+                        <li className='dictionary__id'>{word.id}</li>
+                        <li className='dictionary__word'>{word.word}</li>
+                        <li className='dictionary__pinin'>{word.pinin}</li>
+                        <li className='dictionary__definition'>{word.definition}</li>
+                    </ul>
+                ))
                 }
             </div>
             <CreateWord/>
-
         </div>
     )
 }

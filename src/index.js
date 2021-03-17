@@ -6,7 +6,7 @@ import './components/dictionary/dictionary.css';
 import './components/materials/materials.css';
 import './components/practice/practice.css';
 import './components/theory/theory.css';
-import './services/createword.css';
+import './components/CreateWord/createword.css';
 import App from './App';
 
 
