@@ -5,22 +5,15 @@ import firebase, { db } from '../../services/firebase'
 export const CreateWord = () => {
 
     const [word, setWord] = useState('');
-    const typeWord = evt => {
-        const { value } = evt.target;
-        setWord(value);
-    }
-
     const [pinin, setPinin] = useState('');
-    const typePinin = evt => {
-        const { value } = evt.target;
-        setPinin(value);
-    }
-
-
     const [definition, setDefinition] = useState('');
-    const typeDefinition = evt => {
+
+
+    const hanldeOne = evt => {
         const { value } = evt.target;
         setDefinition(value);
+        setPinin(value);
+        setWord(value);
     }
 
     const clearHandler = () => {
@@ -33,11 +26,11 @@ export const CreateWord = () => {
     // подключение к БД 
     const uploadDictionary = async (dictionary) => {
         const newDoc = await db.collection('Dictionary').add(
-            { 
-                word: { word }, 
-                pinin: { pinin }, 
-                definition: { definition } 
-        });
+            {
+                word: { word },
+                pinin: { pinin },
+                definition: { definition }
+            });
         console.log('newDoc', newDoc)
     }
 
@@ -49,19 +42,19 @@ export const CreateWord = () => {
                     <input
                         type='text'
                         value={word}
-                        onChange={typeWord}
+                        onChange={hanldeOne}
                     /></label>
                 <label className='word__label'>Пиньинь
                     <input
                         type='text'
                         value={pinin}
-                        onChange={typePinin}
+                        onChange={hanldeOne}
                     /></label>
                 <label className='word__label'>Определение
                     <input
                         type='text'
                         value={definition}
-                        onChange={typeDefinition}
+                        onChange={hanldeOne}
                     /></label>
             </form>
             <button

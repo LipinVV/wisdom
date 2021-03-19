@@ -13,7 +13,6 @@ export const Dictionary = () => {
         setSearch(value);
     }
 
-
     useEffect(() => {
         setFiltered(words.filter((value) => {
             if (search === '') {
@@ -92,7 +91,6 @@ export const Dictionary = () => {
                     value={search}
                     onChange={handleSearcher}
                 />
-    {console.log(filtered)}
                 {Boolean(words) && filtered.map((word) => (
                     <ul className='dictionary__list' key={word.id}>
                         <li className='dictionary__checkbox'>
@@ -112,6 +110,7 @@ export const Dictionary = () => {
                 {<div className={filtered.length === 0 ? 'dictionary__message' : 'dictionary__message-hidden'}>По вашему запросу ничего не найдено</div>}
             </div>
             <CreateWord />
+            {console.log(filtered)}
         </div>
     )
 }

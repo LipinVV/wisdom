@@ -1,3 +1,4 @@
+import { array } from 'prop-types';
 import React, { useEffect, useState } from 'react'
 import { GetDictionary } from "../../services/dictionary";
 
@@ -13,11 +14,11 @@ export const Practice = () => {
             console.error(error)
         }
     }
-    
+
     useEffect(() => {
         getAllWords()
     }, [])
-   
+
 
     const [timer, setTimer] = useState(10);
     const [running, setRunning] = useState(true);
@@ -25,7 +26,7 @@ export const Practice = () => {
     useEffect(() => {
         if (running) {
             const id = window.setInterval(() => {
-                setTimer(seconds => seconds > 0 ? seconds - 1 : 'Время вышло!');
+                setTimer(seconds => seconds > 1 ? seconds - 1 : '');
             }, 1000)
             return () => window.clearInterval(id);
         }
@@ -62,10 +63,10 @@ export const Practice = () => {
         <div className='container'>
             <div className='practice'>
                 <div className='type__contest'>
-                    <span className={timer === 'Время вышло!' ? 'contest__timer contest__timer--off' : 'contest__timer'}>{timer}</span>
+                    <span className={timer === '' ? 'contest__timer contest__timer--off' : 'contest__timer'}>{timer}</span>
                     <div className='current__word'>
-                        <span>
-                            {showRandomWord(num)}
+                        <span className=''>
+                            {timer === '' ? 'Время вышло!' : showRandomWord(num)}
                         </span>
                     </div>
                     <label className='answer__label'>
@@ -74,18 +75,18 @@ export const Practice = () => {
                             type='text'
                             onChange={handleChanger}
                             value={answer}
-                            disabled={timer === 'Время вышло!'}
+                            hidden={timer === ''}
                         />
                     </label>
-                    {answer === showRandomWord(num) ?
-                    <button
+                    {answer === showRandomWord(num) && timer !== '' ?
+                        <button
                             onClick={handleGenerator}
                             className='answer__correct'>
                             Верно!
                     </button> :
-                        timer === 'Время вышло!' ? 
-                        <div className='answer__ended'>Далее{' =>'}</div> :
-                        <div className='answer__await'>Впишите слово!</div>}
+                        timer === '' ?
+                            <div className='answer__ended'>Далее{' =>'}</div> :
+                            <div className='answer__await'>Впишите слово!</div>}
                 </div>
             </div>
         </div>

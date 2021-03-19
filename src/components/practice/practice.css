@@ -20,6 +20,7 @@
 }
 
 .answer__input {
+    text-align: center;
     font-size: 50px;
     min-height: 50px;
     min-width: 230px;
@@ -46,6 +47,7 @@
     color: black;
 }
 .type__contest {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,4 +82,62 @@
     min-width: 200px;
     min-height: 30px;
     color: white;
+}
+
+/* ПОИСК 1 ИЗ 4 */
+.match__contest {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.match__contest-options {
+    list-style: none;
+}
+
+.match__contest-yes,
+.match__contest-no {
+    min-width: 300px;
+    min-height: 50px;
+    font-size: 30px;
+}
+
+.match__contest-yes {
+    background-color: #ff2e63;
+}
+
+.match__contest-no {
+    background-color: white;
+}
+
+.match__contest-button {
+    min-width: 200px;
+    height: 50px;
+}
+
+.match__contest-def {
+    min-height: 30px;
+    font-size: 30px;
+}
+
+.match__contest-word, 
+.match__contest-words {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.match__contest-correct,
+.match__contest-incorrect {
+    min-width: 300px;
+    margin-top: 20px;
+    min-height: 50px;
+    font-size: 40px;
+    color: yellow;
+}
+
+.match__contest-incorrect {
+    color: tomato;
 }
