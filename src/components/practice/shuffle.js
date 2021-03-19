@@ -40,35 +40,40 @@ export const Shuffle = () => {
     }
 
     const renderQuizz = () => {
-        setPractice(arrayShuffle(words).filter((_, i) => i < 4));
         setColor(false)
+        setSomestate(false)
+        setPractice(arrayShuffle(words).filter((_, i) => i < 4));
     }
 
     useEffect(() => {
         renderQuiz()
     }, [])
 
-    let rndmzr = Math.floor(Math.random() * 4);
-
+    const [num, setNum] = useState(Math.floor(Math.random() * 4));
+    const [correctCounter, setCorrectCounter] = useState(0);
+    const [mistakeCounter, setMistakeCounter] = useState(0);
+   
     const validation = (evt) => {
-            if (evt.target.value === practice[rndmzr].definition) {
-                setColor(true)
-                setCounter(prevState => prevState + 1)
-            } else {
-                setWrong(prevState => prevState + 1)
-                renderQuizz()
-            }
+        if (evt.target.value === practice[num].definition) {
+            setColor(true)
+            setCorrectCounter(prevState => prevState + 1)
+        } else {
+            evt.preventDefault();
+            setMistakeCounter(prevState => prevState + 1)
+            // renderQuizz()
+            setColor(false)
+            setSomestate(true)
+        }
     }
 
     const [color, setColor] = useState(false);
-    // вместо колора какой-то стэйт ещё нужен чтобы что-то ещё было
-    const [counter, setCounter] = useState(0);
-    const [wrong, setWrong] = useState(0);
+    const [somestate, setSomestate] = useState(false);
+    
 
     return (
         <div className='match__contest'>
             <span>{color}</span>
-            <span className='match__contest-def'>{practice.length > 0 && color === false ? practice[rndmzr].definition : null}</span>
+            {practice.length > 0 ? <span className='match__contest-def'>{practice[num].definition}</span> : null}
             {practice.map((x, i) => {
                 return (
                     <div>
@@ -77,30 +82,31 @@ export const Shuffle = () => {
                             <button
                                 value={x.definition}
                                 type='button'
-                                className={color === true ? 'match__contest-yes' : 'match__contest-no'}
+                                className={'match__contest-no'}
                                 onClick={validation}
-                                disabled={color}
+                                disabled={color || somestate}
                             >
-                                {console.log(color)}
-                                {!color ? x.word : '没错!'}
+                                {x.word}
                             </button>
                         </ul>
                     </div>
                 )
             })}
             <button
-                className='match__contest-button'
+                className={!color && !somestate ? 'match__contest-button' : 'match__contest-button match__contest-button-hidden'}
                 type='button'
                 onClick={renderQuizz}
-                hidden={!color}
+                hidden={!color && !somestate}
             >Следующий вопрос</button>
             {practice.length === 0 ? <button
                 className='match__contest-button'
                 type='button'
                 onClick={renderQuizz}
             >Старт</button> : null}
-            <span className='match__contest-correct'>Верно: {counter}</span>
-            <span className='match__contest-incorrect'>Неверно: {wrong}</span>
+            <div className='match__contest-answers'>
+                <span className='match__contest-correct'>{correctCounter > 0 ? `Верно: ${correctCounter}` : ''}</span>
+                <span className='match__contest-incorrect'>{mistakeCounter > 0 ? `Неверно: ${mistakeCounter}` : ''}</span>
+            </div>
         </div>
     )
 }

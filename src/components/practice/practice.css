@@ -91,6 +91,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .match__contest-options {
@@ -105,16 +106,28 @@
 }
 
 .match__contest-yes {
-    background-color: #ff2e63;
+    background-color: rgb(12,102,110, 0.5);
 }
 
 .match__contest-no {
     background-color: white;
 }
 
-.match__contest-button {
+.match__contest-button,
+.match__contest-button-hidden {
+    border: none;
     min-width: 200px;
     height: 50px;
+}
+
+.match__contest-button-hidden {
+    display: flex;
+    position: absolute;
+    transform: translate(0, 250px);
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff2e63;
 }
 
 .match__contest-def {
@@ -129,15 +142,28 @@
     padding: 0;
 }
 
+.match__contest-body {
+    margin-bottom: 50px;
+}
+
 .match__contest-correct,
 .match__contest-incorrect {
     min-width: 300px;
-    margin-top: 20px;
     min-height: 50px;
     font-size: 40px;
     color: yellow;
 }
 
 .match__contest-incorrect {
-    color: tomato;
+    color: red;
+}
+
+.match__contest-answers {
+    background-color: rgb(12,102,110, 0.5);
+    display: flex;
+    margin-top: 60px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }

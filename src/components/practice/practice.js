@@ -20,7 +20,7 @@ export const Practice = () => {
     }, [])
 
 
-    const [timer, setTimer] = useState(10);
+    const [timer, setTimer] = useState(30);
     const [running, setRunning] = useState(true);
 
     useEffect(() => {
