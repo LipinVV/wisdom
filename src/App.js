@@ -1,10 +1,9 @@
-import React from 'react'
+import { React } from 'react'
 import { Dictionary } from './components/dictionary/dictionary'
 import { Materials } from './components/materials/materials'
 import { Practice } from './components/practice/practice'
 import { Theory } from './components/theory/theory'
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
-
 
 function App() {
   return (

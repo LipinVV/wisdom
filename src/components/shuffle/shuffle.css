@@ -1,0 +1,39 @@
+.match-contest {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.match-contest__option {
+    min-width: 300px;
+    min-height: 50px;
+    font-size: 30px;
+}
+
+.match-contest__option {
+    background-color: rgb(12,102,110, 0.5);
+    color: white;
+}
+
+.match-contest__next-button,
+.match-contest__start-button {
+    border: none;
+    min-width: 200px;
+    height: 50px;
+}
+
+.match-contest__word-definition {
+    user-select: none;
+    min-height: 30px;
+    font-size: 30px;
+}
+
+.match-contest__one-word, 
+.match-contest__all-words {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

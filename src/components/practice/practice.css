@@ -1,4 +1,4 @@
-.practice {
+.type-character-contest{
     width: 100%;
     text-align: center;
     margin-top: 50px;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.current__word {
+.type-character-contest__current-word {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,20 +17,10 @@
     width: 100%;
     min-height: 150px;
     font-size: 60px;
+    user-select: none;
 }
 
-.answer__input {
-    font-size: 50px;
-    min-height: 50px;
-    min-width: 230px;
-}
-
-.answer__input--correct {
-    background-color: #ff2e63;
-    text-align: center;
-}
-
-.answer__label {
+.type-character-contest__answer-label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,20 +28,46 @@
     margin-bottom: 30px;
 }
 
-.answer__correct {
+.type-character-contest__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.type-character-contest__timer {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.type-character-contest__timer_off {
+    min-width: 200px;
+    min-height: 30px;
+    color: white;
+}
+
+.type-character-contest__answer-input {
+    text-align: center;
+    font-size: 50px;
+    min-height: 50px;
+    min-width: 230px;
+}
+
+.type-character-contest__answer-input_correct {
+    background-color: #ff2e63;
+    text-align: center;
+}
+
+.type-character-contest__answer-is-correct {
     min-width: 220px;
     min-height: 50px;
     background-color: #ff2e63;
     font-size: 25px;
     color: black;
 }
-.type__contest {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.answer__await {
+
+.type-character-contest__answers-awaiting {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +77,7 @@
     background-color: rgb(12,102,110, 0.5);
 }
 
-.answer__ended {
+.type-character-contest__answers-ended {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,15 +85,4 @@
     min-height: 30px;
     font-size: 25px;
     background-color: #ff2e63;
-}
-
-.contest__timer {
-    font-size: 40px;
-    margin-bottom: 30px;
-}
-
-.contest__timer--off {
-    min-width: 200px;
-    min-height: 30px;
-    color: white;
 }
