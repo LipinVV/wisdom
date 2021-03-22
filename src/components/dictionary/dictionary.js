@@ -14,6 +14,7 @@ export const Dictionary = () => {
     }
 
     useEffect(() => {
+        getAllWords()
         setFiltered(words.filter((value) => {
             if (search === '') {
                 return value;
@@ -24,8 +25,7 @@ export const Dictionary = () => {
                 value.word.toLowerCase().includes(search.toLowerCase())) {
                 return value;
             }
-        }
-        ))
+        }))
     }, [search])
 
     const [checked, setChecked] = useState([]);
@@ -64,11 +64,7 @@ export const Dictionary = () => {
         } catch (error) {
             console.error(error)
         }
-    }
-
-    useEffect(() => {
-        getAllWords()
-    }, [])
+    }   
 
     return (
         <div className='container'>
@@ -110,37 +106,6 @@ export const Dictionary = () => {
                 {<div className={filtered.length === 0 ? 'dictionary__message' : 'dictionary__message-hidden'}>По вашему запросу ничего не найдено</div>}
             </div>
             <CreateWord />
-            {console.log(filtered)}
         </div>
     )
 }
-
-
-// Фильтр надо вынести в отвдельную функцию
-    // <div className='dictionary__message'>По вашему запросу ничего не найдено</div>
-    // const filter = () => {
-    // .filter((value) => {
-    //         if (search === '') {
-    //             return value;
-    //         }
-    //         if (Number(search) === value.id) {
-    //             return value;
-    //         } else if (value.definition.toLowerCase().includes(search.toLowerCase()) ||
-    //             value.word.toLowerCase().includes(search.toLowerCase())) {
-    //             return value;
-    //         }
-    //     })
-    //         .length === 0 ?
-    // }
-
-    //.filter((value) => {
-    //                             if (search === '') {
-    //                                 return value;
-    //                             }
-    //                             if (Number(search) === value.id) {
-    //                                 return value;
-    //                             } else if (value.definition.toLowerCase().includes(search.toLowerCase()) ||
-    //                                 value.word.toLowerCase().includes(search.toLowerCase())) {
-    //                                 return value;
-    //                             }
-    //                         })

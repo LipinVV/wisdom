@@ -1,4 +1,3 @@
-import { array } from 'prop-types';
 import React, { useEffect, useState } from 'react'
 import { GetDictionary } from "../../services/dictionary";
 
@@ -61,17 +60,19 @@ export const Practice = () => {
 
     return (
         <div className='container'>
-            <div className='practice'>
-                <div className='type__contest'>
-                    <span className={timer === '' ? 'contest__timer contest__timer--off' : 'contest__timer'}>{timer}</span>
-                    <div className='current__word'>
-                        <span className=''>
+            <div className='type-character-contest'>
+                <div className='type-character-contest__wrapper'>
+                    <span className={timer === '' ? 'type-character-contest__timer type-character-contest__timer_off' : 'type-character-contest__timer'}>
+                        {timer}
+                    </span>
+                    <div className='type-character-contest__current-word'>
+                        <span>
                             {timer === '' ? 'Время вышло!' : showRandomWord(num)}
                         </span>
                     </div>
-                    <label className='answer__label'>
+                    <label className='type-character-contest__answer-label'>
                         <input
-                            className={answer === showRandomWord(num) ? 'answer__input answer__input--correct' : 'answer__input'}
+                            className={answer === showRandomWord(num) ? 'type-character-contest__answer-input type-character-contest__answer-input_correct' : 'type-character-contest__answer-input'}
                             type='text'
                             onChange={handleChanger}
                             value={answer}
@@ -81,12 +82,12 @@ export const Practice = () => {
                     {answer === showRandomWord(num) && timer !== '' ?
                         <button
                             onClick={handleGenerator}
-                            className='answer__correct'>
+                            className='type-character-contest__answer-is-correct'>
                             Верно!
                     </button> :
                         timer === '' ?
-                            <div className='answer__ended'>Далее{' =>'}</div> :
-                            <div className='answer__await'>Впишите слово!</div>}
+                            <div className='type-character-contest__answers-ended'>Далее{' =>'}</div> :
+                            <div className='type-character-contest__answers-awaiting'>Впишите слово!</div>}
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ import './components/materials/materials.css';
 import './components/practice/practice.css';
 import './components/theory/theory.css';
 import './components/CreateWord/createword.css';
+import './components/shuffle/shuffle.css';
 import App from './App';
 
 

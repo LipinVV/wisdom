@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-import { Shuffle } from '../practice/shuffle'
+import { Shuffle } from '../../components/shuffle/shuffle';
 
 export const Materials = () => {
 

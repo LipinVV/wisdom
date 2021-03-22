@@ -8,20 +8,11 @@ export const CreateWord = () => {
     const [pinin, setPinin] = useState('');
     const [definition, setDefinition] = useState('');
 
-
-    const hanldeOne = evt => {
-        const { value } = evt.target;
-        setDefinition(value);
-        setPinin(value);
-        setWord(value);
-    }
-
     const clearHandler = () => {
         setWord('');
         setPinin('');
         setDefinition('');
     }
-
 
     // подключение к БД 
     const uploadDictionary = async (dictionary) => {
@@ -31,9 +22,7 @@ export const CreateWord = () => {
                 pinin: { pinin },
                 definition: { definition }
             });
-        console.log('newDoc', newDoc)
     }
-
 
     return (
         <div className=''>
@@ -42,19 +31,19 @@ export const CreateWord = () => {
                     <input
                         type='text'
                         value={word}
-                        onChange={hanldeOne}
+                        onChange={() => setWord()}
                     /></label>
                 <label className='word__label'>Пиньинь
                     <input
                         type='text'
                         value={pinin}
-                        onChange={hanldeOne}
+                        onChange={() => setPinin()}
                     /></label>
                 <label className='word__label'>Определение
                     <input
                         type='text'
                         value={definition}
-                        onChange={hanldeOne}
+                        onChange={() => setDefinition()}
                     /></label>
             </form>
             <button
