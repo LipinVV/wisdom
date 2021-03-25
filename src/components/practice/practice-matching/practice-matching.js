@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { GetDictionary } from '../../services/dictionary';
+import { GetDictionary } from '../../../services/dictionary';
 
 
-export const Shuffle = () => {
+export const PracticeMatching = () => {
     // можно ли прокинуть из одного файла во все?
-    const [words, setWords] = useState([])
+    const [words, setWords] = useState([]) 
     const getAllWords = async () => {
         try {
             const allWordsFromServer = await GetDictionary()
@@ -31,6 +31,7 @@ export const Shuffle = () => {
     const [practice, setPractice] = useState([])
     // console.log('practice', practice) => массив при первой загрузке пуст, аналогично в словаре
     // из-за этого к этой опции привязана логики отрисовки, нужно поправить
+    
     const renderQuiz = () => {
         setStatus(false)
         setPractice(arrayShuffle(words).filter((_, i) => i < 4));
@@ -42,19 +43,23 @@ export const Shuffle = () => {
     }
 
     let num = Math.floor(Math.random() * 4);
-
+  
     const [status, setStatus] = useState(false)
     const validation = (evt) => {
         const { value } = evt.target;
         if (value === practice[num].definition) {
             setStatus(true)
-            // if( status === true) {
-            //     evt.target.style.color = 'red'
-            // }
+
         }
         if (value !== practice[num].definition) {
             setStatus(false)
-            // evt.target.style.backgroundColor = 'red'
+            const smth = practice.map((value) => {
+                return {
+                    ...value,
+                    status: 'error',
+                }
+            })
+            setPractice(smth);
         }
     }
 
@@ -74,7 +79,7 @@ export const Shuffle = () => {
                                 <button
                                     value={x.definition}
                                     type='button'
-                                    className='match-contest__option'
+                                    className={`match-contest__option ${x.status}`}
                                     onClick={validation}
                                     disabled={status}
                                 >
@@ -85,13 +90,13 @@ export const Shuffle = () => {
                     </div>
                 )
             })}
-            <button
+            {status === true && <button
                 className='match-contest__next-button'
                 type='button'
                 onClick={renderQuiz}
                 hidden={practice.length === 0}
                 disabled={status === false}
-            >Следующий вопрос</button>
+            >Следующий вопрос</button>}
             {practice.length === 0 ? <button
                 className='match-contest__start-button'
                 type='button'

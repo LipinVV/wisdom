@@ -4,6 +4,10 @@ import { CreateWord } from '../CreateWord/createword'
 
 
 export const Dictionary = () => {
+    useEffect(() => {
+        getAllWords()
+    }, [])
+    
     const [search, setSearch] = useState('');
     const [words, setWords] = useState([]);
     const [filtered, setFiltered] = useState([]);
@@ -29,10 +33,6 @@ export const Dictionary = () => {
     }
     console.log('words=>', words)
     
-
-    useEffect(() => {
-        getAllWords()
-    }, [])
 
     const [checked, setChecked] = useState([]);
 
@@ -73,8 +73,6 @@ export const Dictionary = () => {
         }
     }   
 
-    
-
     return (
         <div className='container'>
             <div className='dictionary'>
@@ -93,7 +91,6 @@ export const Dictionary = () => {
                     className='dictionary__input'
                     type='text'
                     placeholder='Поиск по слову...'
-                    value={search}
                     onChange={(evt) => filter(evt.target.value, words)}
                 />
                 {Boolean(words.length) && words.map((word) => (
@@ -112,9 +109,10 @@ export const Dictionary = () => {
                         <li className='dictionary__definition'>{word.definition}</li>
                     </ul>
                 ))}
-                {<div className={filtered.length === 0 ? 'dictionary__message' : 'dictionary__message-hidden'}>По вашему запросу ничего не найдено</div>}
+                {<div className={filter.length === 0 ? 'dictionary__message' : 'dictionary__message-hidden'}>По вашему запросу ничего не найдено</div>}
             </div>
             <CreateWord />
+            {console.log(filter)}
         </div>
     )
 }

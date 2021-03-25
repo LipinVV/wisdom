@@ -18,6 +18,10 @@
     color: white;
 }
 
+.error {
+    background-color: red;
+}
+
 .match-contest__next-button,
 .match-contest__start-button {
     border: none;
@@ -37,3 +41,4 @@
     margin: 0;
     padding: 0;
 }
+

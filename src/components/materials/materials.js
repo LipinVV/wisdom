@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-import { Shuffle } from '../../components/shuffle/shuffle';
 
 export const Materials = () => {
 
@@ -15,7 +14,6 @@ export const Materials = () => {
                 <ReactPlayer className='materials__player' width='100%' controls url='https://www.youtube.com/watch?v=3CntDaO_Ihw' />
             </div> */}
 
-            <Shuffle />
         </div>
     )
 }

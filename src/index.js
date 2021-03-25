@@ -4,10 +4,11 @@ import './app.css';
 import './index.css';
 import './components/dictionary/dictionary.css';
 import './components/materials/materials.css';
-import './components/practice/practice.css';
+import './components/practice/practice-type/practice-type.css';
+import './components/practice/practice-menu.css';
 import './components/theory/theory.css';
 import './components/CreateWord/createword.css';
-import './components/shuffle/shuffle.css';
+import './components/practice/practice-matching/practice-matching.css';
 import App from './App';
 
 

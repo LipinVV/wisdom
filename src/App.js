@@ -1,8 +1,8 @@
 import { React } from 'react'
 import { Dictionary } from './components/dictionary/dictionary'
 import { Materials } from './components/materials/materials'
-import { Practice } from './components/practice/practice'
 import { Theory } from './components/theory/theory'
+import { PracticeMenu } from './components/practice/practice-menu'
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
 
 function App() {
@@ -20,7 +20,9 @@ function App() {
       </div>
       <Switch>
         <Route path='/theory' component={Theory}></Route>
-        <Route path='/practice' component={Practice}></Route>
+        <Route path='/practice' component={PracticeMenu}>
+          <PracticeMenu />
+        </Route>
         <Route path='/dictionary' component={Dictionary}></Route>
         <Route path='/materials' component={Materials}></Route>
       </Switch>
