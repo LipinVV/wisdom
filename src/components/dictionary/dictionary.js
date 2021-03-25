@@ -13,20 +13,26 @@ export const Dictionary = () => {
         setSearch(value);
     }
 
+    const filter = (word, allWords) => {
+        const arrangedWords = allWords.filter((value) => {
+            if (word === '') {
+                return value;
+            }
+            if (Number(word) === value.id) {
+                return value;
+            } else if (value.definition.toLowerCase().includes(word.toLowerCase()) ||
+                value.word.toLowerCase().includes(word.toLowerCase())) {
+                return value;
+            }
+        })
+        console.log('AW => ', arrangedWords)
+    }
+    console.log('words=>', words)
+    
+
     useEffect(() => {
         getAllWords()
-        setFiltered(words.filter((value) => {
-            if (search === '') {
-                return value;
-            }
-            if (Number(search) === value.id) {
-                return value;
-            } else if (value.definition.toLowerCase().includes(search.toLowerCase()) ||
-                value.word.toLowerCase().includes(search.toLowerCase())) {
-                return value;
-            }
-        }))
-    }, [search])
+    }, [])
 
     const [checked, setChecked] = useState([]);
 
@@ -61,10 +67,13 @@ export const Dictionary = () => {
         try {
             const allWordsFromServer = await GetDictionary()
             setWords(allWordsFromServer)
+            console.log(allWordsFromServer)
         } catch (error) {
             console.error(error)
         }
     }   
+
+    
 
     return (
         <div className='container'>
@@ -85,9 +94,9 @@ export const Dictionary = () => {
                     type='text'
                     placeholder='Поиск по слову...'
                     value={search}
-                    onChange={handleSearcher}
+                    onChange={(evt) => filter(evt.target.value, words)}
                 />
-                {Boolean(words) && filtered.map((word) => (
+                {Boolean(words.length) && words.map((word) => (
                     <ul className='dictionary__list' key={word.id}>
                         <li className='dictionary__checkbox'>
                             <input
