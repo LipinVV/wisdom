@@ -4,6 +4,8 @@ import { Materials } from './components/materials/materials'
 import { Theory } from './components/theory/theory'
 import { PracticeMenu } from './components/practice/practice-menu'
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
+import { PracticeTypeMaraphon } from '../src/components/practice/practice-type/practice-type'
+import { PracticeMatching } from '../src/components/practice/practice-matching/practice-matching'
 
 function App() {
   return (
@@ -22,7 +24,12 @@ function App() {
         <Route path='/theory' component={Theory}></Route>
         <Route path='/practice' component={PracticeMenu}>
           <PracticeMenu />
+
+          {/* <Route path='/dictionary' component={Dictionary}></Route>
+                <Route path='/materials' component={Materials}></Route> */}
         </Route>
+        <Route exact path='/type-contest' component={PracticeTypeMaraphon}></Route>
+        <Route exact path='/match-contest' component={PracticeMatching}></Route>
         <Route path='/dictionary' component={Dictionary}></Route>
         <Route path='/materials' component={Materials}></Route>
       </Switch>

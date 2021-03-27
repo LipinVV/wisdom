@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetDictionary } from "../../../services/dictionary";
+import { getDictionary } from "../../../services/dictionary";
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
 
 export const PracticeTypeMaraphon = () => {
@@ -8,7 +8,7 @@ export const PracticeTypeMaraphon = () => {
 
     const getAllWords = async () => {
         try {
-            const allWordsFromServer = await GetDictionary()
+            const allWordsFromServer = await getDictionary()
             setWords(allWordsFromServer)
         } catch (error) {
             console.error(error)
@@ -78,6 +78,7 @@ export const PracticeTypeMaraphon = () => {
     return (
         <div className='container'>
             <div className='type-character-contest'>
+                <Link to='/practice'><span>X</span></Link>
                 <div className='type-character-contest__wrapper'>
                     <span className={timer === '' ? 'type-character-contest__timer type-character-contest__timer_off' : 'type-character-contest__timer'}>
                         {timer}

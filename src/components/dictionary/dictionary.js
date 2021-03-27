@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { GetDictionary } from '../../services/dictionary'
+import { getDictionary } from '../../services/dictionary'
 import { CreateWord } from '../CreateWord/createword'
 
 
@@ -12,28 +12,23 @@ export const Dictionary = () => {
     const [words, setWords] = useState([]);
     const [filtered, setFiltered] = useState([]);
 
-    const handleSearcher = evt => {
-        const { value } = evt.target;
-        setSearch(value);
-    }
-
     const filter = (word, allWords) => {
         const arrangedWords = allWords.filter((value) => {
             if (word === '') {
                 return value;
             }
             if (Number(word) === value.id) {
+                console.log('number =>', Number(word), 'value.id=>', value.id)
                 return value;
             } else if (value.definition.toLowerCase().includes(word.toLowerCase()) ||
                 value.word.toLowerCase().includes(word.toLowerCase())) {
                 return value;
             }
         })
-        console.log('AW => ', arrangedWords)
+        setFiltered(arrangedWords)
     }
     console.log('words=>', words)
     
-
     const [checked, setChecked] = useState([]);
 
     const handleChanger = evt => {
@@ -65,9 +60,9 @@ export const Dictionary = () => {
 
     const getAllWords = async () => {
         try {
-            const allWordsFromServer = await GetDictionary()
+            const allWordsFromServer = await getDictionary()
             setWords(allWordsFromServer)
-            console.log(allWordsFromServer)
+            setFiltered(allWordsFromServer)
         } catch (error) {
             console.error(error)
         }
@@ -93,7 +88,7 @@ export const Dictionary = () => {
                     placeholder='Поиск по слову...'
                     onChange={(evt) => filter(evt.target.value, words)}
                 />
-                {Boolean(words.length) && words.map((word) => (
+                {Boolean(filtered.length) && filtered.map((word) => (
                     <ul className='dictionary__list' key={word.id}>
                         <li className='dictionary__checkbox'>
                             <input
@@ -107,12 +102,12 @@ export const Dictionary = () => {
                         <li className='dictionary__word'>{word.word}</li>
                         <li className='dictionary__pinin'>{word.pinin}</li>
                         <li className='dictionary__definition'>{word.definition}</li>
+                        <li className='dictionary__audio'>{word.audioUrl && <audio controls><source src={word.audioUrl}/></audio>}</li>
                     </ul>
                 ))}
-                {<div className={filter.length === 0 ? 'dictionary__message' : 'dictionary__message-hidden'}>По вашему запросу ничего не найдено</div>}
+                {<div className={filtered.length === 0 ? 'dictionary__message' : 'dictionary__message-hidden'}>По вашему запросу ничего не найдено</div>}
             </div>
             <CreateWord />
-            {console.log(filter)}
         </div>
     )
 }

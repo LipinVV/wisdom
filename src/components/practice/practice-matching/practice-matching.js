@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { GetDictionary } from '../../../services/dictionary';
+import { getDictionary } from '../../../services/dictionary';
 
 
 export const PracticeMatching = () => {
     // можно ли прокинуть из одного файла во все?
-    const [words, setWords] = useState([]) 
+    const [words, setWords] = useState([])
     const getAllWords = async () => {
         try {
-            const allWordsFromServer = await GetDictionary()
+            const allWordsFromServer = await getDictionary()
             setWords(allWordsFromServer)
         } catch (error) {
             console.error(error)
@@ -31,7 +31,7 @@ export const PracticeMatching = () => {
     const [practice, setPractice] = useState([])
     // console.log('practice', practice) => массив при первой загрузке пуст, аналогично в словаре
     // из-за этого к этой опции привязана логики отрисовки, нужно поправить
-    
+
     const renderQuiz = () => {
         setStatus(false)
         setPractice(arrayShuffle(words).filter((_, i) => i < 4));
@@ -43,7 +43,7 @@ export const PracticeMatching = () => {
     }
 
     let num = Math.floor(Math.random() * 4);
-  
+
     const [status, setStatus] = useState(false)
     const validation = (evt) => {
         const { value } = evt.target;
@@ -53,13 +53,13 @@ export const PracticeMatching = () => {
         }
         if (value !== practice[num].definition) {
             setStatus(false)
-            const smth = practice.map((value) => {
+            const toggler = practice.map((value) => {
                 return {
                     ...value,
                     status: 'error',
                 }
             })
-            setPractice(smth);
+            setPractice(toggler);
         }
     }
 
@@ -67,7 +67,7 @@ export const PracticeMatching = () => {
         <div className='match-contest'>
             {practice.length > 0 ?
                 <span
-                    style={status ? { color: 'yellow' } : { color: 'red' }}
+                    style={status ? { color: 'yellow' } : { color: 'white' }}
                     className='match-contest__word-definition'>
                     {status ? 'Верно!' : practice[num].definition}
                 </span> : null}

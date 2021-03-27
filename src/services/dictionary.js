@@ -1,24 +1,26 @@
 import { db } from "./firebase";
 import { dictionary } from '../components/dictionary/data'
 
-export const GetDictionary = async () => {
+export const getDictionary = async () => {
     const dictionaryCollection = db.collection("Dictionary");
 
     try {
-        // const allWordsSnapShot = await dictionaryCollection.get();
+        const allWordsSnapShot = await dictionaryCollection.get();
 
-        let allWords = dictionary;
+        let allWords = [];
 
         // prepare all words for client
-        // allWordsSnapShot.forEach((doc) => {
-        //     const unpackedWord = doc.data()
-        //     allWords.push({
-        //         key: doc.id,
-        //         definition: unpackedWord.definition.definition,
-        //         pinin: unpackedWord.pinin.pinin,
-        //         word: unpackedWord.word.word,
-        //     })
-        // });
+        allWordsSnapShot.forEach((doc) => {
+            const unpackedWord = doc.data()
+            allWords.push({
+                key: doc.id,
+                definition: unpackedWord.definition.definition,
+                pinin: unpackedWord.pinin.pinin,
+                word: unpackedWord.word.word,
+                audioUrl: unpackedWord?.audioUrl?.audioUrl,
+                //   ^ optional chaining ^
+            })
+        });
 
         const preparedAllWords = allWords.map((word, i) => {
             return {
