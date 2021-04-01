@@ -67,6 +67,8 @@ export const Dictionary = () => {
             console.error(error)
         }
     }   
+    const [play, setPlay] = useState(false);
+    
 
     return (
         <div className='container'>
@@ -102,7 +104,7 @@ export const Dictionary = () => {
                         <li className='dictionary__word'>{word.word}</li>
                         <li className='dictionary__pinin'>{word.pinin}</li>
                         <li className='dictionary__definition'>{word.definition}</li>
-                        <li className='dictionary__audio'>{word.audioUrl && <audio controls><source src={word.audioUrl}/></audio>}</li>
+                        <li className='dictionary__audio'>{word.audioUrl && <audio id='audio' controls><source src={word.audioUrl}/></audio>}</li>
                     </ul>
                 ))}
                 {<div className={filtered.length === 0 ? 'dictionary__message' : 'dictionary__message-hidden'}>По вашему запросу ничего не найдено</div>}
@@ -111,3 +113,7 @@ export const Dictionary = () => {
         </div>
     )
 }
+// buttons: play/pause;
+// убрать аудиоэлемент из верстки, написать компонент с пропсом аудиоюрл
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement
+// 

@@ -5,7 +5,9 @@ import { Theory } from './components/theory/theory'
 import { PracticeMenu } from './components/practice/practice-menu'
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
 import { PracticeTypeMaraphon } from '../src/components/practice/practice-type/practice-type'
-import { PracticeMatching } from '../src/components/practice/practice-matching/practice-matching'
+import { PracticeDefinitionMatching } from './components/practice/practice-matching/practice-matching-definition/practice-matching-definition'
+import { PracticeWordMatching } from './components/practice/practice-matching/practice-matching-word/practice-matching-word'
+import { PracticeAudioMatching } from './components/practice/practice-audio/practice-audio';
 
 function App() {
   return (
@@ -24,12 +26,11 @@ function App() {
         <Route path='/theory' component={Theory}></Route>
         <Route path='/practice' component={PracticeMenu}>
           <PracticeMenu />
-
-          {/* <Route path='/dictionary' component={Dictionary}></Route>
-                <Route path='/materials' component={Materials}></Route> */}
         </Route>
         <Route exact path='/type-contest' component={PracticeTypeMaraphon}></Route>
-        <Route exact path='/match-contest' component={PracticeMatching}></Route>
+        <Route exact path='/match-definition-contest' component={PracticeDefinitionMatching}></Route>
+        <Route exact path='/word-definition-contest' component={PracticeWordMatching}></Route>
+        <Route exact path='/audio-contest' component={PracticeAudioMatching}></Route>
         <Route path='/dictionary' component={Dictionary}></Route>
         <Route path='/materials' component={Materials}></Route>
       </Switch>

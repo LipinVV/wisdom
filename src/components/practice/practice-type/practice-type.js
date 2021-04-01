@@ -3,7 +3,6 @@ import { getDictionary } from "../../../services/dictionary";
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
 
 export const PracticeTypeMaraphon = () => {
-    // можно ли прокинуть из одного файла во все?
     const [words, setWords] = useState([])
 
     const getAllWords = async () => {
@@ -20,7 +19,7 @@ export const PracticeTypeMaraphon = () => {
     }, [])
 
 
-    const [timer, setTimer] = useState(3);
+    const [timer, setTimer] = useState(30);
     const [running, setRunning] = useState(true);
 
     useEffect(() => {
@@ -32,8 +31,7 @@ export const PracticeTypeMaraphon = () => {
         }
     }, [running]);
 
-
-    const numberGenerator = Math.floor(Math.random() * 40);
+    const numberGenerator = Math.floor(Math.random() * 140);
     const [num, setNum] = useState(numberGenerator);
 
     const handleGenerator = () => {
@@ -70,7 +68,8 @@ export const PracticeTypeMaraphon = () => {
     const [points, setPoints] = useState(0);
 
     const newGame = () => {
-        setTimer(3);
+        handleGenerator();
+        setTimer(30);
         setPoints(0);
         setAnswer('');
     }
@@ -78,8 +77,8 @@ export const PracticeTypeMaraphon = () => {
     return (
         <div className='container'>
             <div className='type-character-contest'>
-                <Link to='/practice'><span>X</span></Link>
                 <div className='type-character-contest__wrapper'>
+                    <Link className='type-character-contest__exit' to='/practice'><span className='type-character-contest__exit__link'>Выйти из задания</span></Link>
                     <span className={timer === '' ? 'type-character-contest__timer type-character-contest__timer_off' : 'type-character-contest__timer'}>
                         {timer}
                     </span>
@@ -106,10 +105,10 @@ export const PracticeTypeMaraphon = () => {
                             className='type-character-contest__answer-is-correct'>
                             Верно!
                     </button> :
-                        timer === '' ?
-                            <div className='type-character-contest__answers-ended'>Далее{' =>'}
-                            </div> :
-                            <div className='type-character-contest__answers-awaiting'>{!answer ? 'Впишите слово!' : 'Неверно!'}</div>}
+                        timer === '' ? null :
+                            <div className='type-character-contest__answers-awaiting'>
+                                {!answer ? 'Впишите слово!' : 'Неверно!'}
+                            </div>}
                     {timer === '' ? <button
                         type='button'
                         className='type-character-contest__re-try'

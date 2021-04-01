@@ -19,6 +19,10 @@
     font-size: 40px;
 }
 
+.practice-navigation__menu__section a {
+    text-decoration: none;
+}
+
 .practice-navigation__menu__section a:visited {
     color: white;
 }
