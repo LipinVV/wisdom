@@ -1,5 +1,4 @@
 import { db } from "./firebase";
-import { dictionary } from '../components/Dictionary/data'
 
 export const getDictionary = async () => {
     const dictionaryCollection = db.collection("Dictionary");

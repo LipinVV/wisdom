@@ -58,7 +58,7 @@
 .audio-contest__play::before {
     position: absolute;
     content: '';
-    background-image: url('../PracticeAudio/img/audio-waves.svg');
+    background-image: url('../PracticeAudio/Img/audio-waves.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

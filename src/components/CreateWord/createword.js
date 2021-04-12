@@ -1,8 +1,8 @@
 import { React, useState } from 'react'
-import { dictionary } from '../Dictionary/data'
-import firebase, { db } from '../../Services/firebase'
-import { storage } from '../../Services/firebase'
-import './Createword.css'
+import { dictionary } from '../dictionary/data'
+import firebase, { db } from '../../services/firebase'
+import { storage } from '../../services/firebase'
+import './createword.css'
 
 export const CreateWord = () => {
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { getDictionary } from '../../Services/dictionary'
-import { CreateWord } from '../CreateWord/Createword'
-import './Dictionary.css'
+import { getDictionary } from '../../services/dictionary'
+import { CreateWord } from '../CreateWord/createword'
+import './dictionary.css'
 
 export const Dictionary = () => {
     useEffect(() => {

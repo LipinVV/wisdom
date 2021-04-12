@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { getDictionary } from '../../Services/dictionary';
-import './Audio.css';
+import { getDictionary } from '../../services/dictionary';
+import './audio.css';
 
 export const Audio = () => {
     

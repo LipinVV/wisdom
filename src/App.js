@@ -1,15 +1,15 @@
 import { React } from 'react'
-import { Dictionary } from './components/Dictionary/Dictionary'
-import { Materials } from './components/Materials/Materials'
-import { Theory } from './components/Theory/Theory'
+import { Dictionary } from './components/dictionary/dictionary'
+import { Materials } from './components/materials/materials'
+import { Theory } from './components/theory/theory'
 import { PracticeMenu } from './components/Practice/PracticeMenu/PracticeMenu'
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
-import { PracticeTypeMaraphon } from '../src/components/Practice/PracticeType/PracticeType'
+import { PracticeTypeMaraphon } from './components/Practice/PracticeType/PracticeType'
 import { PracticeDefinitionMatching } from './components/Practice/PracticeMatching/PracticeMatchingDefinition/PracticeMatchingDefinition'
 import { PracticeWordMatching } from './components/Practice/PracticeMatching/PracticeMatchingWord/PracticeMatchingWord'
 import { PracticeAudioMatching } from './components/Practice/PracticeAudio/PracticeAudio';
-import { Audio } from './components/Audioz/Audio';
-import './App.css'
+import { Audio } from './components/Audioz/audio';
+import './app.css'
 
 function App() {
   return (

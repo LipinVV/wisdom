@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getDictionary } from '../../../../Services/dictionary';
+import { getDictionary } from '../../../../services/dictionary';
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
 import './PracticeMatchingWord.css'
 

@@ -141,7 +141,7 @@
 
 .dictionary__audio__button::before {
     content: '';
-    background-image: url('../Audioz/Img/audio-waves.svg');
+    background-image: url('../Audioz/img/audio-waves.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

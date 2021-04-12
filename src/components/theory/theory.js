@@ -1,6 +1,6 @@
 import React from 'react'
 import { Lesson } from './lesson'
-import './Theory.css'
+import './theory.css'
 
 export const Theory = () => {
 
