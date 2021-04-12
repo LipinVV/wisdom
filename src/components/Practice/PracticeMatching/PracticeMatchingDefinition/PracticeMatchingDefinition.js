@@ -53,10 +53,11 @@ export const PracticeDefinitionMatching = () => {
         }
         if (value !== practice[num].definition) {
             setStatus(false)
-            const toggler = practice.map((value) => {
+            const toggler = practice.map((word) => {
+                console.log('value', word)
                 return {
-                    ...value,
-                    status: 'error',
+                    ...word,
+                    status: word.definition === value ? 'error' : word.status,
                 }
             })
             setPractice(toggler);
@@ -75,7 +76,7 @@ export const PracticeDefinitionMatching = () => {
                     </span> : null}
                 {practice.map((item, index) => {
                     return (
-                        <div>
+                        <div key={item.word}>
                             <ul className='match-contest__all-words'>
                                 <li className='match-contest__one-word'>
                                     <button
