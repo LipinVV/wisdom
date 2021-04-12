@@ -66,7 +66,6 @@ export const PracticeDefinitionMatching = () => {
     return (
         <div className='container'>
             <div className='match-contest'>
-                {console.log(practice, practice[num])}
                 <Link className='match-contest-definition__exit' to='/practice'><span className='match-contest-definition__exit__link'>Выйти из задания</span></Link>
                 {practice.length > 0 ?
                     <span
@@ -74,19 +73,19 @@ export const PracticeDefinitionMatching = () => {
                         className='match-contest__word-definition'>
                         {status ? 'Верно!' : practice[num].definition}
                     </span> : null}
-                {practice.map((x, i) => {
+                {practice.map((item, index) => {
                     return (
                         <div>
                             <ul className='match-contest__all-words'>
                                 <li className='match-contest__one-word'>
                                     <button
-                                        value={x.definition}
+                                        value={item.definition}
                                         type='button'
-                                        className={`match-contest__option ${x.status}`}
+                                        className={`match-contest__option ${item.status}`}
                                         onClick={validation}
                                         disabled={status}
                                     >
-                                        {x.word}
+                                        {item.word}
                                     </button>
                                 </li>
                             </ul>
