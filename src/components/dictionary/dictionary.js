@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { getDictionary } from '../../services/dictionary'
-import { CreateWord } from '../CreateWord/createword'
-
+import { getDictionary } from '../../Services/dictionary'
+import { CreateWord } from '../CreateWord/Createword'
+import './Dictionary.css'
 
 export const Dictionary = () => {
     useEffect(() => {
         getAllWords()
     }, [])
-    
-    const [search, setSearch] = useState('');
+
     const [words, setWords] = useState([]);
     const [filtered, setFiltered] = useState([]);
 
@@ -27,8 +26,7 @@ export const Dictionary = () => {
         })
         setFiltered(arrangedWords)
     }
-    console.log('words=>', words)
-    
+
     const [checked, setChecked] = useState([]);
 
     const handleChanger = evt => {
@@ -48,7 +46,6 @@ export const Dictionary = () => {
         setGloballyChecked(prevState => !prevState)
     }
 
-
     const declineNoun = count => {
         count = Math.abs(count) % 100;
         let count1 = count % 10;
@@ -66,9 +63,12 @@ export const Dictionary = () => {
         } catch (error) {
             console.error(error)
         }
-    }   
-    const [play, setPlay] = useState(false);
-    
+    }
+
+    let soundOutput = (src) => {
+        const sound = new Audio(`${src}`);
+        return sound.play();
+    }
 
     return (
         <div className='container'>
@@ -104,7 +104,12 @@ export const Dictionary = () => {
                         <li className='dictionary__word'>{word.word}</li>
                         <li className='dictionary__pinin'>{word.pinin}</li>
                         <li className='dictionary__definition'>{word.definition}</li>
-                        <li className='dictionary__audio'>{word.audioUrl && <audio id='audio' controls><source src={word.audioUrl}/></audio>}</li>
+                        <li className='dictionary__audio'>
+                            {word.audioUrl && <buttion
+                                className='dictionary__audio__button'
+                                type='button'
+                                onClick={() => soundOutput(word.audioUrl)} />}
+                        </li>
                     </ul>
                 ))}
                 {<div className={filtered.length === 0 ? 'dictionary__message' : 'dictionary__message-hidden'}>По вашему запросу ничего не найдено</div>}

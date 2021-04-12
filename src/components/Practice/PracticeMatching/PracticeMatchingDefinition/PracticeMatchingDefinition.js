@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { getDictionary } from '../../../../services/dictionary';
+import { getDictionary } from '../../../../Services/dictionary';
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
+import './PracticeMatchingDefinition.css'
 
 export const PracticeDefinitionMatching = () => {
     // можно ли прокинуть из одного файла во все?
@@ -49,7 +50,6 @@ export const PracticeDefinitionMatching = () => {
         const { value } = evt.target;
         if (value === practice[num].definition) {
             setStatus(true)
-
         }
         if (value !== practice[num].definition) {
             setStatus(false)

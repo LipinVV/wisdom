@@ -1,5 +1,6 @@
 import { React } from 'react'
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
+import './PracticeMenu.css'
 
 export const PracticeMenu = () => {
     // contest sub-menu

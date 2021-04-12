@@ -125,9 +125,28 @@
 .dictionary__audio {
     display: flex;
     list-style: none;
-    max-width: 45px;
-    overflow: hidden;
-    height: 100%;
-    border: 1px solid white;
-    background-color: black;
+    border: 1px solid black;
+}
+
+.dictionary__audio__button {
+    min-width: 40px;
+    min-height: 40px;
+    position: relative;
+    cursor: pointer;
+}
+
+.dictionary__audio__button:hover {
+    background-color: #ffd532;
+}
+
+.dictionary__audio__button::before {
+    content: '';
+    background-image: url('../Audioz/Img/audio-waves.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    transform: translate(5px, 5px);
 }

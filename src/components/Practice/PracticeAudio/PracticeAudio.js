@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { getDictionary } from '../../../services/dictionary';
+import { getDictionary } from '../../../Services/dictionary';
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
-
+import './PracticeAudio.css'
 
 export const PracticeAudioMatching = () => {
 
@@ -16,17 +16,20 @@ export const PracticeAudioMatching = () => {
     }
     useEffect(() => {
         getAllWords()
-        // setNum(numberGenerator)
     }, [])
 
     const numberGenerator = Math.floor(Math.random() * 140);
     const [num, setNum] = useState(numberGenerator);
 
-    const showRandomWordUrl = (num) => {
+    const showRandomWordUrl = (allWords, num) => {
+        const foundWord = allWords.find((word) => word.id === num)
+        return foundWord?.audioUrl
+    }
+
+    const showRandomWord = (num) => {
         for (let word of words) {
             if (word.id === num) {
-                console.log(word.audioUrl)
-                return word.audioUrl;
+                return word.word;
             } else {
                 continue
             }
@@ -45,25 +48,39 @@ export const PracticeAudioMatching = () => {
     }
 
     const handleKeyPress = (evt) => {
-        // if (evt.keyCode === 13 && answer === showRandomWordUrl(num)) {
-        //     setAnswer('');
-        // }
+        if (evt.keyCode === 13 && answer === showRandomWord(num)) {
+            nextAudio();
+        }
+    }
+
+    const [isShowPlayer, setShowPlayer] = useState(true)
+    const nextAudio = () => {
+        setShowPlayer(false)
+        handleGenerator()
+
+        setTimeout(() => {
+            setShowPlayer(true)
+        }, 300)
+    }
+
+    const soundOutput = () => {
+        const sound = new Audio(`${showRandomWordUrl(words, num)}`);
+        return sound.play();
     }
 
     return (
         <div className='container'>
             <div className='audio-contest'>
-                <Link className='audio-contestn__exit' to='/practice'><span className='audio-contest__exit__link'>Выйти из задания</span></Link>
-
+                <Link className='audio-contest__exit' to='/practice'><span className='audio-contest__exit__link'>Выйти из задания</span></Link>
                 <div className='audio-contest__current-word'>
-                        <span>{showRandomWordUrl(num)}
-                            <audio id='audio-contest' 
-                            controls
-                            ><source src={showRandomWordUrl(num)}/></audio>
-                        </span>
-                    </div>
-
-                <label>
+                    {Boolean(showRandomWordUrl(words, num)) && isShowPlayer && (
+                        <audio id={showRandomWord(num)} autoPlay>
+                            <source src={showRandomWordUrl(words, num)} />
+                        </audio>
+                    )}
+                    <button className='audio-contest__play' onClick={soundOutput}></button>
+                </div>
+                <label className='audio-contest__answer-label'>
                     <input
                         className='audio-contest__answer-field'
                         type='text'
@@ -74,8 +91,8 @@ export const PracticeAudioMatching = () => {
                 </label>
 
                 <button
-                    onClick={handleGenerator}
-                >PRESS</button>
+                    onClick={nextAudio}
+                >Далее</button>
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { getDictionary } from "../../../services/dictionary";
+import { getDictionary } from "../../../Services/dictionary";
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
+import './PracticeType.css'
 
 export const PracticeTypeMaraphon = () => {
     const [words, setWords] = useState([])

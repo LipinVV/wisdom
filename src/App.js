@@ -1,13 +1,15 @@
 import { React } from 'react'
-import { Dictionary } from './components/dictionary/dictionary'
-import { Materials } from './components/materials/materials'
-import { Theory } from './components/theory/theory'
-import { PracticeMenu } from './components/practice/practice-menu'
+import { Dictionary } from './components/Dictionary/Dictionary'
+import { Materials } from './components/Materials/Materials'
+import { Theory } from './components/Theory/Theory'
+import { PracticeMenu } from './components/Practice/PracticeMenu/PracticeMenu'
 import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
-import { PracticeTypeMaraphon } from '../src/components/practice/practice-type/practice-type'
-import { PracticeDefinitionMatching } from './components/practice/practice-matching/practice-matching-definition/practice-matching-definition'
-import { PracticeWordMatching } from './components/practice/practice-matching/practice-matching-word/practice-matching-word'
-import { PracticeAudioMatching } from './components/practice/practice-audio/practice-audio';
+import { PracticeTypeMaraphon } from '../src/components/Practice/PracticeType/PracticeType'
+import { PracticeDefinitionMatching } from './components/Practice/PracticeMatching/PracticeMatchingDefinition/PracticeMatchingDefinition'
+import { PracticeWordMatching } from './components/Practice/PracticeMatching/PracticeMatchingWord/PracticeMatchingWord'
+import { PracticeAudioMatching } from './components/Practice/PracticeAudio/PracticeAudio';
+import { Audio } from './components/Audioz/Audio';
+import './App.css'
 
 function App() {
   return (
@@ -32,7 +34,9 @@ function App() {
         <Route exact path='/word-definition-contest' component={PracticeWordMatching}></Route>
         <Route exact path='/audio-contest' component={PracticeAudioMatching}></Route>
         <Route path='/dictionary' component={Dictionary}></Route>
-        <Route path='/materials' component={Materials}></Route>
+        <Route path='/materials' component={Materials}>
+          <Audio />
+        </Route>
       </Switch>
     </Router>
   )

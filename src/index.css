@@ -20,7 +20,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--first);
     color: white;
-    background: url('./components/img/3.jpg') no-repeat;
+    background: url('./img/3.jpg') no-repeat;
     background-position: center top;
     background-size: cover;
     background-attachment: fixed;

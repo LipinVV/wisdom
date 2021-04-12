@@ -1,0 +1,69 @@
+.audio-contest {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.audio-contest__exit__link {
+    background-color: rgb(12,102,110, 0.5);
+    color: #f9f871;
+}
+
+.audio-contest__current-word {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.audio-contest__answer-field {
+    margin-bottom: 40px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+
+.audio-contest__exit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: white;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.audio-contest__answer-label {
+    width: 100%;
+}
+
+.audio-contest__play {
+    position: relative;
+    min-width: 100px;
+    min-height: 80px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.audio-contest__play:hover {
+    background-color: rgb(12,102,110, 0.5);
+}
+
+.audio-contest__play::before {
+    position: absolute;
+    content: '';
+    background-image: url('../PracticeAudio/img/audio-waves.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    transform: translate(-50px, -40px);
+}
