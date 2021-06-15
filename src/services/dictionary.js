@@ -1,6 +1,6 @@
 import { db } from "./firebase";
 
-export const GetDictionary = async () => {
+export const getDictionary = async () => {
     const dictionaryCollection = db.collection("Dictionary");
 
     try {
@@ -16,11 +16,18 @@ export const GetDictionary = async () => {
                 definition: unpackedWord.definition.definition,
                 pinin: unpackedWord.pinin.pinin,
                 word: unpackedWord.word.word,
+                audioUrl: unpackedWord?.audioUrl?.audioUrl,
+                //   ^ optional chaining ^
             })
         });
 
-        allWords.map((word, i) => [...allWords, word.id = i + 1]);
-        return allWords;
+        const preparedAllWords = allWords.map((word, i) => {
+            return {
+                ...word,
+                id: i + 1
+            }
+        })
+        return preparedAllWords
     } catch (error) {
         return Promise.reject(error);
     }

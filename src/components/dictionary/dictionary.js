@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { GetDictionary } from '../../services/dictionary'
+import { getDictionary } from '../../services/dictionary'
 import { CreateWord } from '../CreateWord/createword'
-
+import './dictionary.css'
 
 export const Dictionary = () => {
-    const [search, setSearch] = useState('');
+    useEffect(() => {
+        getAllWords()
+    }, [])
+
     const [words, setWords] = useState([]);
     const [filtered, setFiltered] = useState([]);
 
-    const handleSearcher = evt => {
-        const { value } = evt.target;
-        setSearch(value);
+    const filter = (word, allWords) => {
+        const arrangedWords = allWords.filter((value) => {
+            if (word === '') {
+                return value;
+            }
+            if (Number(word) === value.id) {
+                console.log('number =>', Number(word), 'value.id=>', value.id)
+                return value;
+            } else if (value.definition.toLowerCase().includes(word.toLowerCase()) ||
+                value.word.toLowerCase().includes(word.toLowerCase())) {
+                return value;
+            }
+        })
+        setFiltered(arrangedWords)
     }
-
-    useEffect(() => {
-        getAllWords()
-        setFiltered(words.filter((value) => {
-            if (search === '') {
-                return value;
-            }
-            if (Number(search) === value.id) {
-                return value;
-            } else if (value.definition.toLowerCase().includes(search.toLowerCase()) ||
-                value.word.toLowerCase().includes(search.toLowerCase())) {
-                return value;
-            }
-        }))
-    }, [search])
 
     const [checked, setChecked] = useState([]);
 
@@ -47,7 +46,6 @@ export const Dictionary = () => {
         setGloballyChecked(prevState => !prevState)
     }
 
-
     const declineNoun = count => {
         count = Math.abs(count) % 100;
         let count1 = count % 10;
@@ -59,12 +57,18 @@ export const Dictionary = () => {
 
     const getAllWords = async () => {
         try {
-            const allWordsFromServer = await GetDictionary()
+            const allWordsFromServer = await getDictionary()
             setWords(allWordsFromServer)
+            setFiltered(allWordsFromServer)
         } catch (error) {
             console.error(error)
         }
-    }   
+    }
+
+    let soundOutput = (src) => {
+        const sound = new Audio(`${src}`);
+        return sound.play();
+    }
 
     return (
         <div className='container'>
@@ -84,10 +88,9 @@ export const Dictionary = () => {
                     className='dictionary__input'
                     type='text'
                     placeholder='Поиск по слову...'
-                    value={search}
-                    onChange={handleSearcher}
+                    onChange={(evt) => filter(evt.target.value, words)}
                 />
-                {Boolean(words) && filtered.map((word) => (
+                {Boolean(filtered.length) && filtered.map((word) => (
                     <ul className='dictionary__list' key={word.id}>
                         <li className='dictionary__checkbox'>
                             <input
@@ -101,6 +104,12 @@ export const Dictionary = () => {
                         <li className='dictionary__word'>{word.word}</li>
                         <li className='dictionary__pinin'>{word.pinin}</li>
                         <li className='dictionary__definition'>{word.definition}</li>
+                        <li className='dictionary__audio'>
+                            {word.audioUrl && <buttion
+                                className='dictionary__audio__button'
+                                type='button'
+                                onClick={() => soundOutput(word.audioUrl)} />}
+                        </li>
                     </ul>
                 ))}
                 {<div className={filtered.length === 0 ? 'dictionary__message' : 'dictionary__message-hidden'}>По вашему запросу ничего не найдено</div>}
@@ -109,3 +118,7 @@ export const Dictionary = () => {
         </div>
     )
 }
+// buttons: play/pause;
+// убрать аудиоэлемент из верстки, написать компонент с пропсом аудиоюрл
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement
+// 

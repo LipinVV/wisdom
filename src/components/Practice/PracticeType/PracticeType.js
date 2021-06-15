@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { GetDictionary } from "../../services/dictionary";
+import { getDictionary } from "../../../services/dictionary";
+import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom'
+import './PracticeType.css'
 
-export const Practice = () => {
-    // можно ли прокинуть из одного файла во все?
+export const PracticeTypeMaraphon = () => {
     const [words, setWords] = useState([])
 
     const getAllWords = async () => {
         try {
-            const allWordsFromServer = await GetDictionary()
+            const allWordsFromServer = await getDictionary()
             setWords(allWordsFromServer)
         } catch (error) {
             console.error(error)
@@ -31,8 +32,7 @@ export const Practice = () => {
         }
     }, [running]);
 
-
-    const numberGenerator = Math.floor(Math.random() * 40);
+    const numberGenerator = Math.floor(Math.random() * 140);
     const [num, setNum] = useState(numberGenerator);
 
     const handleGenerator = () => {
@@ -58,10 +58,28 @@ export const Practice = () => {
         setAnswer(value);
     }
 
+    const handleKeyPress = (evt) => {
+        if (evt.keyCode === 13 && answer === showRandomWord(num)) {
+            setNum(numberGenerator);
+            setAnswer('');
+            setPoints(prevState => prevState + 5);
+        }
+    }
+
+    const [points, setPoints] = useState(0);
+
+    const newGame = () => {
+        handleGenerator();
+        setTimer(30);
+        setPoints(0);
+        setAnswer('');
+    }
+
     return (
         <div className='container'>
             <div className='type-character-contest'>
                 <div className='type-character-contest__wrapper'>
+                    <Link className='type-character-contest__exit' to='/practice'><span className='type-character-contest__exit__link'>Выйти из задания</span></Link>
                     <span className={timer === '' ? 'type-character-contest__timer type-character-contest__timer_off' : 'type-character-contest__timer'}>
                         {timer}
                     </span>
@@ -70,6 +88,7 @@ export const Practice = () => {
                             {timer === '' ? 'Время вышло!' : showRandomWord(num)}
                         </span>
                     </div>
+                    <div className='type-character-contest__points'>{`Очков заработано: ${points}`}</div>
                     <label className='type-character-contest__answer-label'>
                         <input
                             className={answer === showRandomWord(num) ? 'type-character-contest__answer-input type-character-contest__answer-input_correct' : 'type-character-contest__answer-input'}
@@ -77,17 +96,25 @@ export const Practice = () => {
                             onChange={handleChanger}
                             value={answer}
                             hidden={timer === ''}
+                            onKeyDown={handleKeyPress}
                         />
                     </label>
                     {answer === showRandomWord(num) && timer !== '' ?
                         <button
+                            disabled={!answer}
                             onClick={handleGenerator}
                             className='type-character-contest__answer-is-correct'>
                             Верно!
                     </button> :
-                        timer === '' ?
-                            <div className='type-character-contest__answers-ended'>Далее{' =>'}</div> :
-                            <div className='type-character-contest__answers-awaiting'>Впишите слово!</div>}
+                        timer === '' ? null :
+                            <div className='type-character-contest__answers-awaiting'>
+                                {!answer ? 'Впишите слово!' : 'Неверно!'}
+                            </div>}
+                    {timer === '' ? <button
+                        type='button'
+                        className='type-character-contest__re-try'
+                        onClick={newGame}
+                    >Хочу ещё раз!</button> : null}
                 </div>
             </div>
         </div>

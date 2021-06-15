@@ -18,6 +18,10 @@
     color: white;
 }
 
+.error {
+    background-color: red;
+}
+
 .match-contest__next-button,
 .match-contest__start-button {
     border: none;
@@ -36,4 +40,20 @@
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.match-contest-definition__exit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: white;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.match-contest-definition__exit__link {
+    background-color: rgb(12,102,110, 0.5);
+    color: #f9f871;
 }

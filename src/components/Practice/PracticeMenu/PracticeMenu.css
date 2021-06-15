@@ -1,0 +1,44 @@
+.practice-navigation__menu {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+    min-height: 800px;
+}
+
+.practice-navigation__menu__section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 50%;
+    min-height: 200px;
+    font-size: 40px;
+}
+
+.practice-navigation__menu__section a {
+    text-decoration: none;
+}
+
+.practice-navigation__menu__section a:visited {
+    color: white;
+}
+
+.practice-navigation__menu__section:nth-child(1) {
+    background-color: rgb(249,248,113,0.7);
+}
+
+.practice-navigation__menu__section:nth-child(2) {
+    background-color: rgb(176,225,118, 0.7);
+}
+
+.practice-navigation__menu__section:nth-child(3) {
+    background-color: rgb(112,197,127, 0.7);
+}
+
+.practice-navigation__menu__section:nth-child(4) {
+    background-color: rgb(56,166,131, 0.7);
+}
